@@ -8,6 +8,10 @@
 
         var currentRepository, currentSha;
 
+        self.level = ko.observable(1);
+        self.currentRepository = ko.observable("");
+        self.currentFile = ko.observable("");
+
         self.isReposLoading = ko.observable(false);
         self.isFilesLoading = ko.observable(false);
 
@@ -24,6 +28,7 @@
                 url: "https://api.github.com/orgs/" + owner + "/repos"
             }).then(function (data) {
                 self.repositories(data);
+                self.level(2);
             }).always(function () {
                 self.isReposLoading(false);
             });
@@ -48,6 +53,7 @@
                     }).then(function (data) {
                         currentSha = masterSha;
                         self.files(data.tree);
+                        self.level(3);
                     });
                 }
             }).always(function (data) {
@@ -66,9 +72,14 @@
                     $.each(x, function (i, obj) { y[i] = base64_decode(obj); });
 
                     self.file(y.join("\n"));
+                    self.level(4);
                 }
             });
         };
+
+        self.goBack = function () {
+            if (self.level() > 1) self.level(self.level() - 1);
+        }
     }
 
     // Die Initialisierungsfunktion muss bei jedem Laden einer neuen Seite ausgeführt werden.
