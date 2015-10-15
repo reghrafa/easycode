@@ -66,6 +66,8 @@
                     $.each(x, function (i, obj) { y[i] = base64_decode(obj); });
 
                     self.file(y.join("\n"));
+                    $('.prettyprinted').removeClass('prettyprinted');
+                    prettyPrint();
                 }
             });
         };
