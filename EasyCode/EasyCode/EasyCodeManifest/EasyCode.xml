@@ -5,8 +5,8 @@
   <Version>1.0.0.0</Version>
   <ProviderName>[Provider name]</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
-  <DisplayName DefaultValue="EasyCode" />
-  <Description DefaultValue="EasyCode"/>
+  <DisplayName DefaultValue="GitKat" />
+  <Description DefaultValue="GitKat"/>
   <Hosts>
     <Host Name="Presentation" />
     <Host Name="Document" />
