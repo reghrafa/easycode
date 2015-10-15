@@ -38,6 +38,9 @@
     .repos button {
         margin-top: 4px;
         float: right;
+        border: none;
+        background: none;
+        padding:5px 5px 0 5px;
     }
 
 .files {
@@ -49,7 +52,3 @@
     .files li a {
         cursor: pointer;
     }
-
-pre {
-    overflow-x: auto;
-}

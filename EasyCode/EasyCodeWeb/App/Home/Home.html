@@ -40,7 +40,9 @@
             <div id="level-2" data-bind="visible: level() == 2">
                 <ul class="repos" data-bind="foreach: repositories">
                     <li>
-                        <button data-bind="click: $parent.loadFiles">take this one</button>
+                        <button data-bind="click: $parent.loadFiles">
+                            <img src="Images/openfolder.png"/>
+                        </button>
 
                         <div>
                             <span data-bind="text: full_name"></span>
