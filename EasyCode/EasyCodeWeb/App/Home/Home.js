@@ -95,6 +95,19 @@
 
         self.goBack = function () {
             if (self.level() > 1) self.level(self.level() - 1);
+        };
+        self.pasteCode = function () {
+            var doc = Office.context.document;
+            if (doc.mode === Office.DocumentMode.ReadOnly) {
+                //handle later
+                return;
+            }
+            doc.setSelectedDataAsync($('.prettyprint').html().replace(/\n/g,"<br/>"), { coercionType: Office.CoercionType.Html }, function (asyncResult) {
+
+                if (asyncResult.status === Office.AsyncResultStatus.Failed) {
+                    //handle later
+                }
+            });
         }
     }
 
