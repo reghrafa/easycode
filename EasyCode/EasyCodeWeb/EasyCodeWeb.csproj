@@ -67,6 +67,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App\ProjectTree\ProjectTree.html" />
+    <Content Include="App\ProjectTree\ProjectTree.css" />
+    <Content Include="App\ProjectTree\ProjectTree.js" />
     <Content Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -375,6 +378,11 @@
     <Content Include="Scripts\prettify\prettify.css" />
     <Content Include="Scripts\prettify\prettify.js" />
     <Content Include="Scripts\prettify\run_prettify.js" />
+    <Content Include="Scripts\prettify\skins\default.css" />
+    <Content Include="Scripts\prettify\skins\desert.css" />
+    <Content Include="Scripts\prettify\skins\doxy.css" />
+    <Content Include="Scripts\prettify\skins\sons-of-obsidian.css" />
+    <Content Include="Scripts\prettify\skins\sunburst.css" />
     <Content Include="Scripts\_officeintellisense.js" />
     <Content Include="Web.config" />
   </ItemGroup>
