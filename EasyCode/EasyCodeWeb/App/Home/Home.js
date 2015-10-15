@@ -25,7 +25,10 @@
             self.isReposLoading(true);
 
             $.ajax({
-                url: "https://api.github.com/orgs/" + owner + "/repos"
+                url: "https://api.github.com/orgs/" + owner + "/repos",
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("Authorization", "Basic S2FpQnJ1bW11bmQ6OGYyMGNiNmE1NzM3ZjBlYmE0YzMxOTVlODRiNWZhMWZlNmMyYjc0NA==");
+                }
             }).then(function (data) {
                 self.repositories(data);
                 self.level(2);
@@ -42,14 +45,20 @@
             self.isFilesLoading(true);
 
             $.ajax({
-                url: "https://api.github.com/repos/" + currentRepository + "/branches"
+                url: "https://api.github.com/repos/" + currentRepository + "/branches",
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("Authorization", "Basic S2FpQnJ1bW11bmQ6OGYyMGNiNmE1NzM3ZjBlYmE0YzMxOTVlODRiNWZhMWZlNmMyYjc0NA==");
+                }
             }).then(function (dataB) {
                 var masterSha;
                 $.each(dataB, function (i, obj) { if (obj.name == "master") masterSha = obj.commit.sha; });
 
                 if (masterSha) {
                     return $.ajax({
-                        url: "https://api.github.com/repos/" + currentRepository + "/git/trees/" + masterSha
+                        url: "https://api.github.com/repos/" + currentRepository + "/git/trees/" + masterSha,
+                        beforeSend: function (xhr) {
+                            xhr.setRequestHeader("Authorization", "Basic S2FpQnJ1bW11bmQ6OGYyMGNiNmE1NzM3ZjBlYmE0YzMxOTVlODRiNWZhMWZlNmMyYjc0NA==");
+                        }
                     }).then(function (data) {
                         currentSha = masterSha;
                         self.files(data.tree);
@@ -63,7 +72,12 @@
 
         // Loads the specific file tree item (either blob or tree)
         self.loadTree = function (node) {
-            $.ajax({ url: node.url })
+            $.ajax({
+                url: node.url,
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader("Authorization", "Basic S2FpQnJ1bW11bmQ6OGYyMGNiNmE1NzM3ZjBlYmE0YzMxOTVlODRiNWZhMWZlNmMyYjc0NA==");
+                }
+            })
             .then(function (result) {
                 if (node.type == "tree") self.files(result.tree);
                 if (node.type == "blob") {
