@@ -9,6 +9,8 @@
     <link href="../../Content/Office.css" rel="stylesheet" type="text/css" />
     <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js" type="text/javascript"></script>
 
+    <!-- https://github.com/google/code-prettify -->
+    <script src="../../Scripts/prettify/run_prettify.js"></script>
     <!-- To enable offline debugging using a local reference to Office.js, use:                        -->
     <!-- <script src="../../Scripts/Office/MicrosoftAjax.js" type="text/javascript"></script>  -->
     <!-- <script src="../../Scripts/Office/1/office.js" type="text/javascript"></script>  -->
@@ -27,13 +29,30 @@
     </div>
     <div id="content-main">
         <div class="padding">
-            <p><strong>Add home screen content here.</strong></p>
-            <p>For example:</p>
-            <button id="get-data-from-selection">Get data from selection</button>
-
-            <p style="margin-top: 50px;">
-                <a target="_blank" href="https://go.microsoft.com/fwlink/?LinkId=276812">Find more samples online...</a>
-            </p>
+           <pre class="prettyprint">
+           class Voila {
+                using System;
+                using System.IO;
+                using System.Text;
+                private class Program
+                {
+                  public static void Main()
+                  {
+                    //Text, der in die Datei geschrieben wird
+                    const string textToWrite = "Hallo Welt";
+                    const string fileName = "dateiname.txt";
+    
+                    //Datei "dateiname.txt" wird erstellt oder überschrieben
+                    using (var stream = new FileStream(fileName, FileMode.Create, FileAccess.Write))
+                    {
+                       //Der Text wird UTF8-kodiert in die Datei geschrieben
+                       var data = Encoding.UTF8.GetBytes(textToWrite);
+                       stream.Write(data, 0, data.Length);
+                       //Datei wird geschlossen..
+                    }
+                  }
+                }
+            </pre>
         </div>
     </div>
 </body>
