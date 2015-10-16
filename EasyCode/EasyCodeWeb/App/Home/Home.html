@@ -7,6 +7,9 @@
     <script src="../../Scripts/jquery-1.9.1.js" type="text/javascript"></script>
     <script src="../../Scripts/knockout-3.3.0.js" type="text/javascript"></script>
 
+    <script src="../../Scripts/prettify/prettify.js"></script>
+    <link href="../../Scripts/prettify/prettify.css" type="text/css" rel="stylesheet" />
+
     <link href="../../Content/Office.css" rel="stylesheet" type="text/css" />
     <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js" type="text/javascript"></script>
 
@@ -23,27 +26,46 @@
 <body>
     <div id="content-header">
         <div class="padding">
-            <h1>Willkommen</h1>
+            <h1>GitKat</h1>
         </div>
     </div>
     <div id="content-main">
         <div class="padding">
+            <button data-bind="click: goBack">&lArr;</button>
+            <div id="level-1" data-bind="visible: level() == 1">
             <button data-bind="click: loadRepositories">Load Repos</button>
-            <ul data-bind="foreach: repositories">
+                <div data-bind="visible: isReposLoading">Loading Repos</div>
+            </div>
+
+            <div id="level-2" data-bind="visible: level() == 2">
+                <ul class="repos" data-bind="foreach: repositories">
                 <li>
+                        <button data-bind="click: $parent.loadFiles">
+                            <img src="Images/openfolder.png"/>
+                        </button>
+
                     <div>
                         <span data-bind="text: full_name"></span>
                     </div>
-                    Stars: <span data-bind="text: stargazers_count"></span>
-                    Forks: <span data-bind="text: forks"></span>
-    
-                    <button data-bind="click: $parent.loadFiles">take this one</button>
+                        <span class="stars">Stars: <span data-bind="text: stargazers_count"></span></span>
+                        <span class="forks">Forks: <span data-bind="text: forks"></span></span>
+
                 </li>
             </ul>
-            <ul data-bind="foreach: files">
+            </div>
+
+            <div data-bind="visible: isFilesLoading">Loading Data</div>
+
+            <div id="level-3" data-bind="visible: level() == 3">
+                <ul class="files" data-bind="foreach: files">
                 <li><a data-bind="click: $parent.loadTree"><span data-bind="text: path"></span></a></li>
             </ul>
-            <pre data-bind="text: file"></pre>
+            </div>
+
+            <div id="level-4" data-bind="visible: level() == 4">
+                <button data-bind="click: pasteCode">Paste Code</button>
+                <pre data-bind="text: file" class="prettyprint"></pre>
+            </div>
         </div>
     </div>
 </body>
