@@ -85,7 +85,7 @@
                     var y = Array();
                     $.each(x, function (i, obj) { y[i] = base64_decode(obj); });
 
-                    self.file(y.join("\n"));
+                    self.file(y.join("").substring(3));
                     self.level(4);
                     $('.prettyprinted').removeClass('prettyprinted');
                     prettyPrint();
@@ -102,7 +102,7 @@
                 //handle later
                 return;
             }
-            doc.setSelectedDataAsync($('.prettyprint').html().replace(/\n/g,"<br/>"), { coercionType: Office.CoercionType.Html }, function (asyncResult) {
+            doc.setSelectedDataAsync($('.prettyprint').html().replace(/    /g, "&nbsp;&nbsp;&nbsp;&nbsp;").replace(/\n/g, "<br/>"), { coercionType: Office.CoercionType.Html }, function (asyncResult) {
 
                 if (asyncResult.status === Office.AsyncResultStatus.Failed) {
                     //handle later
