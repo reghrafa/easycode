@@ -33,30 +33,36 @@
         <div class="padding">
             <button data-bind="click: goBack">&lArr;</button>
             <div id="level-1" data-bind="visible: level() == 1">
-            <button data-bind="click: loadRepositories">Load Repos</button>
+                <button data-bind="click: loadRepositories">Load Repos</button>
                 <div data-bind="visible: isReposLoading">Loading Repos</div>
             </div>
 
             <div id="level-2" data-bind="visible: level() == 2">
-            <ul data-bind="foreach: repositories">
-                <li>
-                    <div>
-                        <span data-bind="text: full_name"></span>
-                    </div>
-                    Stars: <span data-bind="text: stargazers_count"></span>
-                    Forks: <span data-bind="text: forks"></span>
+                <ul data-bind="foreach: repositories">
+                    <li>
+                        <div>
+                            <span data-bind="text: full_name"></span>
+                        </div>
+                        Stars: <span data-bind="text: stargazers_count"></span>
+                        Forks: <span data-bind="text: forks"></span>
 
-                    <button data-bind="click: $parent.loadFiles">take this one</button>
-                </li>
-            </ul>
+                        <button data-bind="click: $parent.loadFiles">take this one</button>
+                    </li>
+                </ul>
             </div>
 
             <div data-bind="visible: isFilesLoading">Loading Data</div>
 
             <div id="level-3" data-bind="visible: level() == 3">
-            <ul data-bind="foreach: files">
-                <li><a data-bind="click: $parent.loadTree"><span data-bind="text: path"></span></a></li>
-            </ul>
+                <ul data-bind="foreach: files">
+                    <li>
+                        <a data-bind="click: $parent.loadTree">
+                            <span data-bind="visible: type == 'tree'">[Folder]</span>
+                            <span data-bind="visible: type == 'blob'">[File]</span>
+                            <span data-bind="text: path"></span>
+                        </a>
+                    </li>
+                </ul>
             </div>
 
             <div id="level-4" data-bind="visible: level() == 4">
