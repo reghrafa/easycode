@@ -9,7 +9,7 @@
         var currentRepository, currentSha, lastupdatedcode;
 
         self.level = ko.observable(1);
-        self.currentRepository = ko.observable("");
+        self.currentRepository = ko.observable("Select a Repo to get started");
         self.currentFile = ko.observable("");
 
         self.isReposLoading = ko.observable(false);
@@ -42,7 +42,7 @@
         self.loadFiles = function (repository) {
             if (!repository) { return; };
             currentRepository = repository.full_name;
-
+            self.currentRepository(repository.full_name);
             self.isFilesLoading(true);
 
             $.ajax({

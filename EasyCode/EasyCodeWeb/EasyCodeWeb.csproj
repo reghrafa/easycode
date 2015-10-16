@@ -67,7 +67,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App\Home\Images\openfolder.png" />
+    <Content Include="Images\backbutton.png" />
+    <Content Include="Images\openfolder.png" />
     <Content Include="App\ProjectTree\ProjectTree.html" />
     <Content Include="App\ProjectTree\ProjectTree.css" />
     <Content Include="App\ProjectTree\ProjectTree.js" />
