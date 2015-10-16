@@ -26,12 +26,14 @@
 <body>
     <div id="content-header">
         <div class="padding">
-            <h1 id="title" data-bind="text:currentRepository"></h1>
+            <button data-bind="click: goBack" class="backbutton" >
+                <img src="../../Images/backbutton.png"/>
+            </button>
+            <h1>GitKat</h1>
         </div>
     </div>
     <div id="content-main">
         <div class="padding">
-            <button data-bind="click: goBack">&lArr;</button>
             <div id="level-1" data-bind="visible: level() == 1">
             <button data-bind="click: loadRepositories">Load Repos</button>
                 <div data-bind="visible: isReposLoading">Loading Repos</div>
@@ -41,7 +43,7 @@
                 <ul class="repos" data-bind="foreach: repositories">
                 <li>
                         <button data-bind="click: $parent.loadFiles">
-                            <img src="Images/openfolder.png"/>
+                            <img src="../../Images/openfolder.png"/>
                         </button>
 
                     <div>
@@ -58,7 +60,13 @@
 
             <div id="level-3" data-bind="visible: level() == 3">
                 <ul class="files" data-bind="foreach: files">
-                <li><a data-bind="click: $parent.loadTree"><span data-bind="text: path"></span></a></li>
+                    <li>
+                        <a data-bind="click: $parent.loadTree">
+                            <span data-bind="visible: type == 'tree'">[Folder]</span>
+                            <span data-bind="visible: type == 'blob'">[File]</span>
+                            <span data-bind="text: path"></span>
+                        </a>
+                    </li>
             </ul>
             </div>
 
