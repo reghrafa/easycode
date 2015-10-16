@@ -6,7 +6,7 @@
     var ViewModel = function () {
         var self = this;
 
-        var currentRepository, currentSha;
+        var currentRepository, currentSha, lastupdatedcode;
 
         self.level = ko.observable(1);
         self.currentRepository = ko.observable("Select a Repo to get started");
@@ -17,6 +17,7 @@
 
         self.repositories = ko.observableArray([]);
         self.files = ko.observableArray([]);
+        self.bindings = ko.observableArray([]);
         self.file = ko.observable("");
 
         // Loads the list of repositories
@@ -96,18 +97,47 @@
         self.goBack = function () {
             if (self.level() > 1) self.level(self.level() - 1);
         };
+
         self.pasteCode = function () {
             var doc = Office.context.document;
             if (doc.mode === Office.DocumentMode.ReadOnly) {
                 //handle later
                 return;
             }
-            doc.setSelectedDataAsync($('.prettyprint').html().replace(/  /g, "&nbsp;&nbsp;").replace(/\n/g, "<br/>"), { coercionType: Office.CoercionType.Html }, function (asyncResult) {
 
+            var code = $('.prettyprint').html().replace(/  /g, "&nbsp;&nbsp;").replace(/\n/g, "<br/>");
+
+            doc.setSelectedDataAsync(code, { coercionType: Office.CoercionType.Html }, function (asyncResult) {
                 if (asyncResult.status === Office.AsyncResultStatus.Failed) {
-                    //handle later
+                    //TODO: You allways have to place todos in hackathon code!
+                }
+                else if (asyncResult.status === "succeeded") {
+                    lastupdatedcode = code;
+
+
+                    Office.context.document.bindings.addFromSelectionAsync(Office.BindingType.Text, { id: "gitkat-" + self.currentRepository() }, function (bindingResult) {
+                        if (bindingResult === "succeeded") {
+                            var x = "";
+                        }
+                    });
                 }
             });
+        }
+
+        self.updateFromGithub = function (binding) {
+            binding.setDataAsync(lastupdatedcode, { coercionType: Office.CoercionType.Html }, function (result) {   });
+        }
+
+        self.findCodeSnippets = function () {
+            Office.context.document.bindings.getAllAsync(function (result) {
+                if (result.status === "succeeded") {
+                    var bindings = [];
+                    $.each(result.value, function (i, obj) { if (obj.id.toString().substr(0, 7) == "gitkat-") bindings.push(obj); });
+
+                    self.bindings(bindings);
+                }
+            });
+
         }
     }
 

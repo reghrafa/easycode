@@ -36,6 +36,18 @@
         <div class="padding">
             <div id="level-1" data-bind="visible: level() == 1">
             <button data-bind="click: loadRepositories">Load Repos</button>
+                <button data-bind="click: findCodeSnippets">Find Code Snippets</button>
+
+                <ul data-bind="foreach: bindings">
+                    <li>
+                        <p class="snippettitle">Code Snippet #1</p>
+                        <p class="code">static void Main(string[] args)<br/>
+                        ...<br/>
+                        }</p>
+                        <button data-bind="click: $parent.updateFromGithub">Update from Github</button>
+                    </li>
+                </ul>
+
                 <div data-bind="visible: isReposLoading">Loading Repos</div>
             </div>
 
@@ -72,7 +84,7 @@
 
             <div id="level-4" data-bind="visible: level() == 4">
                 <button data-bind="click: pasteCode">Paste Code</button>
-                <pre data-bind="text: file" class="prettyprint linenums"></pre>
+                <pre data-bind="text: file" class="prettyprint"></pre>
             </div>
         </div>
     </div>
