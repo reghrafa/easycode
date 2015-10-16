@@ -102,7 +102,7 @@
                 //handle later
                 return;
             }
-            doc.setSelectedDataAsync($('.prettyprint').html().replace(/    /g, "&nbsp;&nbsp;&nbsp;&nbsp;").replace(/\n/g, "<br/>"), { coercionType: Office.CoercionType.Html }, function (asyncResult) {
+            doc.setSelectedDataAsync($('.prettyprint').html().replace(/  /g, "&nbsp;&nbsp;").replace(/\n/g, "<br/>"), { coercionType: Office.CoercionType.Html }, function (asyncResult) {
 
                 if (asyncResult.status === Office.AsyncResultStatus.Failed) {
                     //handle later

@@ -48,7 +48,18 @@
     padding: 0;
     margin: 0;
 }
-
-    .files li a {
-        cursor: pointer;
-    }
+.files li {
+    padding:4px;
+    border-bottom: 1px solid #EEEEEE;
+}
+.files li a {
+    cursor: pointer;
+    text-decoration:none;
+    font-size:15px;
+}
+.files li a:hover {
+    text-decoration:underline;
+}
+pre.prettyprint {
+    border:none;
+}
