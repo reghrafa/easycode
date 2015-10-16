@@ -68,6 +68,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\backbutton.png" />
+    <Content Include="Images\file.png" />
+    <Content Include="Images\folder.png" />
     <Content Include="Images\openfolder.png" />
     <Content Include="App\ProjectTree\ProjectTree.html" />
     <Content Include="App\ProjectTree\ProjectTree.css" />

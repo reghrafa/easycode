@@ -85,3 +85,16 @@ h1 {
     width:25px;
     height:25px;
 }
+.filefolder {
+    width: 15px;
+    height: 15px;
+}
+.code {
+    color:#65b042;
+    font-size:1.2em;
+}
+.snippettitle {
+    color:#696969;
+    font-size:1.4em;
+    font-weight:bold;
+}

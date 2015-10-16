@@ -62,8 +62,8 @@
                 <ul class="files" data-bind="foreach: files">
                     <li>
                         <a data-bind="click: $parent.loadTree">
-                            <span data-bind="visible: type == 'tree'">[Folder]</span>
-                            <span data-bind="visible: type == 'blob'">[File]</span>
+                            <span data-bind="visible: type == 'tree'"><img src="../../Images/folder.png"class="filefolder"/></span>
+                            <span data-bind="visible: type == 'blob'"><img src="../../Images/file.png" class="filefolder" /></span>
                             <span data-bind="text: path"></span>
                         </a>
                     </li>
