@@ -60,7 +60,13 @@
 
             <div id="level-3" data-bind="visible: level() == 3">
                 <ul class="files" data-bind="foreach: files">
-                <li><a data-bind="click: $parent.loadTree"><span data-bind="text: path"></span></a></li>
+                    <li>
+                        <a data-bind="click: $parent.loadTree">
+                            <span data-bind="visible: type == 'tree'">[Folder]</span>
+                            <span data-bind="visible: type == 'blob'">[File]</span>
+                            <span data-bind="text: path"></span>
+                        </a>
+                    </li>
             </ul>
             </div>
 
