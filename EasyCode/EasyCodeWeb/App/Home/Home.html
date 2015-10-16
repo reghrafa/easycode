@@ -26,7 +26,7 @@
 <body>
     <div id="content-header">
         <div class="padding">
-            <h1>GitKat</h1>
+            <h1 id="title" data-bind="text:currentRepository"></h1>
         </div>
     </div>
     <div id="content-main">
@@ -64,7 +64,7 @@
 
             <div id="level-4" data-bind="visible: level() == 4">
                 <button data-bind="click: pasteCode">Paste Code</button>
-                <pre data-bind="text: file" class="prettyprint"></pre>
+                <pre data-bind="text: file" class="prettyprint linenums"></pre>
             </div>
         </div>
     </div>
